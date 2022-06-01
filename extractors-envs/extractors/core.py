@@ -67,8 +67,6 @@ class World(object):
     def update_states(self):
         for _, agent in enumerate(self.agents):
             if agent.adversary:
-                agent.state.anger += 10
-                agent.state.fear += 10
                 if agent.action == 0:
                     agent.state.anger -= 1
                     agent.state.fear += 0
@@ -78,32 +76,32 @@ class World(object):
                     agent.state.fear += 0
                     agent.state.health += 0
                 elif agent.action == 2:
-                    agent.state.anger += 1
-                    agent.state.fear -= 1
+                    agent.state.anger -= 1
+                    agent.state.fear += 0
                     agent.state.health += 0
                 elif agent.action == 3:
                     agent.state.anger += 1
-                    agent.state.fear += 1
+                    agent.state.fear += 0
                     agent.state.health += 0
                 elif agent.action == 4:
                     agent.state.anger -= 10
-                    agent.state.fear += 10
+                    agent.state.fear += 0
                     agent.state.health += 0
                 elif agent.action == 5:
                     agent.state.anger -= 10
-                    agent.state.fear += 10
+                    agent.state.fear += 0
                     agent.state.health += 0
                 elif agent.action == 6:
-                    agent.state.anger += 0
-                    agent.state.fear -= 10
+                    agent.state.anger -= 10
+                    agent.state.fear += 0
                     agent.state.health -= 5
                 elif agent.action == 7:
                     agent.state.anger -= 2
-                    agent.state.fear -= 2
+                    agent.state.fear += 0
                     agent.state.health -= 5
                 elif agent.action == 8:
                     agent.state.anger -= 2
-                    agent.state.fear -= 2
+                    agent.state.fear += 0
                     agent.state.health -= 5
                 else:
                     raise NotImplementedError
@@ -113,7 +111,7 @@ class World(object):
                     agent.state.fear -= 1
                     agent.state.health += 0
                 elif agent.action == 1:
-                    agent.state.anger -= 10
+                    agent.state.anger += 0
                     agent.state.fear -= 10
                     agent.state.health = -201 # 设定为特定值
                 elif agent.action == 2:
@@ -128,8 +126,8 @@ class World(object):
                     agent.state.fear -= 1
                     agent.state.health += 0
                 elif agent.action == 1:
-                    agent.state.anger -= 10
-                    agent.state.fear -= 10
+                    agent.state.anger += 0
+                    agent.state.fear -= 5
                     agent.state.health += 0
                 elif agent.action == 2:
                     agent.state.anger += 0
@@ -146,15 +144,15 @@ class World(object):
                 if other.neutral:
                     if agent.action == 0:
                         other.state.anger += 0
-                        other.state.fear += 0
+                        other.state.fear += 1
                         other.state.health += 0
                     elif agent.action == 1:
                         other.state.anger += 0
-                        other.state.fear += 1
+                        other.state.fear += 2
                         other.state.health += 0
                     elif agent.action == 2:
                         other.state.anger += 0
-                        other.state.fear += 2
+                        other.state.fear += 1
                         other.state.health += 0
                     elif agent.action == 3:
                         other.state.anger += 0
@@ -162,7 +160,7 @@ class World(object):
                         other.state.health += 0
                     elif agent.action == 4:
                         other.state.anger += 0
-                        other.state.fear += 20
+                        other.state.fear += 10
                         other.state.health += 0
                     elif agent.action == 5:
                         other.state.anger += 0
@@ -174,24 +172,24 @@ class World(object):
                         other.state.health += 0
                     elif agent.action == 7:
                         other.state.anger += 0
-                        other.state.fear += 2
+                        other.state.fear += 1
                         other.state.health += 0
                     elif agent.action == 8:
                         other.state.anger += 0
-                        other.state.fear += 10
-                        other.state.health -= 20
+                        other.state.fear += 2
+                        other.state.health -= 5
                 else:
                         if agent.action == 0:
                             other.state.anger += 0
-                            other.state.fear += 1
+                            other.state.fear += 2
                             other.state.health += 0
                         elif agent.action == 1:
                             other.state.anger += 0
-                            other.state.fear += 0
+                            other.state.fear += 1
                             other.state.health += 0
                         elif agent.action == 2:
                             other.state.anger += 0
-                            other.state.fear += 2
+                            other.state.fear += 1
                             other.state.health += 0
                         elif agent.action == 3:
                             other.state.anger += 0
@@ -203,7 +201,7 @@ class World(object):
                             other.state.health -= 100
                         elif agent.action == 5:
                             other.state.anger += 0
-                            other.state.fear += 20
+                            other.state.fear += 10
                             other.state.health += 0
                         elif agent.action == 6:
                             other.state.anger += 0
@@ -211,25 +209,25 @@ class World(object):
                             other.state.health += 0
                         elif agent.action == 7:
                             other.state.anger += 0
-                            other.state.fear += 10
-                            other.state.health -= 20
+                            other.state.fear += 2
+                            other.state.health -= 5
                         elif agent.action == 8:
                             other.state.anger += 0
-                            other.state.fear += 2
+                            other.state.fear += 1
                             other.state.health += 0
             elif agent.neutral:
                 if other.adversary:
                     if agent.action == 0:
-                        other.state.anger += 0
+                        other.state.anger -= 1
                         other.state.fear += 0
                         other.state.health += 0
                     elif agent.action == 1:
-                        other.state.anger -= 10
+                        other.state.anger = 0
                         other.state.fear += 0
                         other.state.health += 0
                     else:
                         other.state.anger += 5
-                        other.state.fear += 1
+                        other.state.fear += 0
                         other.state.health += 0
                 else:
                     if agent.action == 0:
@@ -247,7 +245,7 @@ class World(object):
             else:
                 if other.adversary:
                     if agent.action == 0:
-                        other.state.anger += 0
+                        other.state.anger -= 1
                         other.state.fear += 0
                         other.state.health += 0
                     elif agent.action == 1:
@@ -256,7 +254,7 @@ class World(object):
                         other.state.health += 0
                     else:
                         other.state.anger += 5
-                        other.state.fear += 1
+                        other.state.fear += 0
                         other.state.health += 0
                 else:
                     if agent.action == 0:

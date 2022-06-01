@@ -16,7 +16,7 @@ def parse_args():
     # Environment
     parser.add_argument("--scenario", type=str, default="simple_v3", help="name of the scenario script")
     parser.add_argument("--max-episode-len", type=int, default=30, help="maximum episode length")
-    parser.add_argument("--num-episodes", type=int, default=20000, help="number of episodes")
+    parser.add_argument("--num-episodes", type=int, default=10000, help="number of episodes")
     parser.add_argument("--num-adversaries", type=int, default=1, help="number of adversaries")
     parser.add_argument("--good-policy", type=str, default="maddpg", help="policy for good agents")
     parser.add_argument("--adv-policy", type=str, default="maddpg", help="policy of adversaries")
@@ -137,42 +137,42 @@ def train(arglist):
             if done or terminal:
                 end_info = ""
                 if terminal: # 被警察抓住
-                    adv_rew = -50
-                    good_rew = 20
+                    adv_rew = -100
+                    good_rew = 500
                     neutral_rew = 0
                     end_info = "The criminal is caught by police."
                 elif done == 1:
-                    adv_rew = 50
-                    good_rew = -20
+                    adv_rew = 100
+                    good_rew = -100
                     neutral_rew = 0
                     end_info = "The criminal successfully robs the bank."
                 elif done == 2:
                     adv_rew = 20
-                    good_rew = 0
+                    good_rew = 100
                     neutral_rew = 0
                     end_info = "The criminal gets out the bank but gets no money."
                 elif done == 3:
                     adv_rew = -20
-                    good_rew = -50
+                    good_rew = -100
                     neutral_rew = 0
                     end_info = "The criminal kills the employee and gets out the bank with no money."
                 elif done == 4:
-                    adv_rew = 50
-                    good_rew = 0
+                    adv_rew = 100
+                    good_rew = -100
                     neutral_rew = 0
                     end_info = "The employee give away password so the criminal robs the bank."
                 elif done == 5:
                     adv_rew = -20
-                    good_rew = -50
+                    good_rew = -100
                     neutral_rew = 0
                     end_info = "The criminal kills the employee because of high anger and gets out the bank with no money."
                 elif done == 6:
-                    adv_rew = -50
+                    adv_rew = -100
                     good_rew = 20
                     neutral_rew = 0
                     end_info = "The employee disarms the criminal so the criminal is caught."
                 else:
-                    adv_rew = -50
+                    adv_rew = -100
                     good_rew = 0
                     neutral_rew = 0
                     end_info = "The customer disarms the criminal so the criminal is caught."

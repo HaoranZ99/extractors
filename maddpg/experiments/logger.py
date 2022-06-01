@@ -28,7 +28,7 @@ class Logger():
     def log_episode_end_info(self, info):
         with open(self.save_log, "a") as f:
             f.write(
-                info + "\n"
+                "Ending: " + info + "\n"
             )
             f.write("======================================\n")
 
