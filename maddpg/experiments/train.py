@@ -245,12 +245,11 @@ def train(arglist):
 
             # saves final episode reward for plotting training curve later
             if len(episode_rewards) > arglist.num_episodes:
+                os.makedirs(arglist.plots_dir, exist_ok=True)
                 rew_file_name = arglist.plots_dir + arglist.exp_name + '_rewards.pkl'
-                os.makedirs(rew_file_name, exist_ok=True)
                 with open(rew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_rewards, fp)
                 agrew_file_name = arglist.plots_dir + arglist.exp_name + '_agrewards.pkl'
-                os.makedirs(agrew_file_name, exist_ok=True)
                 with open(agrew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_ag_rewards, fp)
                 print('...Finished total of {} episodes.'.format(len(episode_rewards)))
