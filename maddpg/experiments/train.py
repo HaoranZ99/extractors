@@ -14,7 +14,7 @@ from logger import Logger
 def parse_args():
     parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
     # Environment
-    parser.add_argument("--scenario", type=str, default="simple_v3", help="name of the scenario script")
+    parser.add_argument("--scenario", type=str, default="simple_v4", help="name of the scenario script")
     parser.add_argument("--max-episode-len", type=int, default=30, help="maximum episode length")
     parser.add_argument("--num-episodes", type=int, default=10000, help="number of episodes")
     parser.add_argument("--num-adversaries", type=int, default=1, help="number of adversaries")
