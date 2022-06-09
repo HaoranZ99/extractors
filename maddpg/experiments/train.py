@@ -168,7 +168,7 @@ def train(arglist):
                     adv_rew = 100
                     good_rew = -100
                     neutral_rew = 0
-                    end_info = "The employee give away password so the criminal robs the bank."
+                    end_info = "The employee gives away password so the criminal robs the bank."
                 elif done == 5:
                     adv_rew = -20
                     good_rew = -100
@@ -179,6 +179,11 @@ def train(arglist):
                     good_rew = 20
                     neutral_rew = 0
                     end_info = "The employee disarms the criminal so the criminal is caught."
+                elif done == 7:
+                    adv_rew = -20
+                    good_rew = -100
+                    neutral_rew = 0
+                    end_info = "The employee gets killed because of low health."
                 else:
                     adv_rew = -100
                     good_rew = 0
@@ -214,12 +219,6 @@ def train(arglist):
                     break
                 continue
 
-            # for displaying learned policies
-            if arglist.display:
-                time.sleep(0.1)
-                env.render()
-                continue
-
             # update all trainers, if not in display or benchmark mode
             loss = None
             for agent in trainers:
@@ -247,9 +246,11 @@ def train(arglist):
             # saves final episode reward for plotting training curve later
             if len(episode_rewards) > arglist.num_episodes:
                 rew_file_name = arglist.plots_dir + arglist.exp_name + '_rewards.pkl'
+                os.makedirs(rew_file_name, exist_ok=True)
                 with open(rew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_rewards, fp)
                 agrew_file_name = arglist.plots_dir + arglist.exp_name + '_agrewards.pkl'
+                os.makedirs(agrew_file_name, exist_ok=True)
                 with open(agrew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_ag_rewards, fp)
                 print('...Finished total of {} episodes.'.format(len(episode_rewards)))

@@ -160,7 +160,7 @@ def train(arglist):
                     adv_rew = 100
                     good_rew = -100
                     neutral_rew = 0
-                    end_info = "The employee give away password so the criminal robs the bank."
+                    end_info = "The employee gives away password so the criminal robs the bank."
                 elif done == 5:
                     adv_rew = -20
                     good_rew = -100
@@ -171,6 +171,11 @@ def train(arglist):
                     good_rew = 20
                     neutral_rew = 0
                     end_info = "The employee disarms the criminal so the criminal is caught."
+                elif done == 7:
+                    adv_rew = -20
+                    good_rew = -100
+                    neutral_rew = 0
+                    end_info = "The employee gets killed because of low health."
                 else:
                     adv_rew = -100
                     good_rew = 0

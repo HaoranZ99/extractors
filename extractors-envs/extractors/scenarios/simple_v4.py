@@ -87,16 +87,17 @@ class Scenario(BaseScenario):
         # 如果做了相应动作，角色/整个游戏结束
         # 如果状态值过高过低，有概率结束游戏
         '''
-        | Done val | Done state                             |
-        |----------|----------------------------------------|
-        | 0        | false                                  |
-        | 1        | Employee give away pw actively         |
-        | 2        | Criminal run away actively             |
-        | 3        | Criminal kill people actively          |
-        | 4        | Employee give away pw coz of low hp    |
-        | 5        | Criminal kill people coz of high anger |
-        | 6        | Employee disarms criminal              |
-        | 7        | Customer disarms criminal              |
+        | Done val | Done state                              |
+        |----------|-----------------------------------------|
+        | 0        | false                                   |
+        | 1        | Employee gives away pw actively         |
+        | 2        | Criminal runs away actively             |
+        | 3        | Criminal kills people actively          |
+        | 4        | Employee gives away pw coz of low hp    |
+        | 5        | Criminal kills people coz of high anger |
+        | 6        | Employee disarms criminal               |
+        | 7        | Customer disarms criminal               |
+        | 8        | Employee gets killed coz of low hp      |
         '''
         done = 0
         if agent.adversary:
@@ -113,6 +114,8 @@ class Scenario(BaseScenario):
                 done = 4
             elif agent.action == 2 and np.random.uniform() < 0.02:
                 done = 6
+            elif agent.state.health <= 0:
+                done = 8
         else:
             if agent.action == 2 and np.random.uniform() < 0.02:
                 done = 7
